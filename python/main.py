@@ -1,5 +1,7 @@
-import sys
+from flask import Flask, jsonify, request
 import requests
+
+app = Flask(__name__)
 
 def get_response(question):
     api_key = "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"
@@ -12,10 +14,18 @@ def get_response(question):
     else:
         return {"error": "Failed to fetch response."}
 
-if len(sys.argv) > 1:
-    question = " ".join(sys.argv[1:])
-else:
-    question = input("Entrez votre question : ")
+@app.route('/')
+def index():
+    return 'Hello, please go to /ask to ask a question.'
 
-response = get_response(question)
-print(response)
+@app.route('/ask', methods=['GET', 'POST'])
+def ask_question():
+    if request.method == 'POST':
+        question = request.form['question']
+        response = get_response(question)
+        return jsonify(response)
+    else:
+        return 'Please use POST method to ask a question.'
+
+if __name__ == '__main__':
+    app.run(debug=True)
