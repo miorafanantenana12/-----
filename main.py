@@ -21,12 +21,17 @@ def index():
 @app.route('/ask', methods=['GET', 'POST'])
 def ask_question():
     if request.method == 'POST':
-        question = request.form['question']
+        question = request.form.get('question')
+    elif request.method == 'GET':
+        question = request.args.get('question')
+    else:
+        return 'Unsupported method.'
+
+    if question:
         response = get_response(question)
         return jsonify(response)
     else:
-        return 'Please use POST method to ask a question.'
+        return 'Please provide a question.'
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', debug=True)
-
