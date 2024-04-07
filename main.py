@@ -28,4 +28,5 @@ def ask_question():
         return 'Please use POST method to ask a question.'
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(host='0.0.0.0', debug=True)
+
