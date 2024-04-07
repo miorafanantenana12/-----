@@ -1,3 +1,4 @@
+import sys
 import requests
 
 def get_response(question):
@@ -11,6 +12,10 @@ def get_response(question):
     else:
         return {"error": "Failed to fetch response."}
 
-question = input("Entrez votre question : ")
+if len(sys.argv) > 1:
+    question = " ".join(sys.argv[1:])
+else:
+    question = input("Entrez votre question : ")
+
 response = get_response(question)
 print(response)
