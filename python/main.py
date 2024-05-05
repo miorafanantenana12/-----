@@ -4,7 +4,7 @@ import requests
 app = Flask(__name__)
 
 def get_response(question):
-    api_key = "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"
+    api_key = "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"
     endpoint = "https://azeu-api-beta.onrender.com/GlobalGPT"
     params = {"question": question, "apiKey": api_key}
 
