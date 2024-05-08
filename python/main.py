@@ -5,7 +5,7 @@ app = Flask(__name__)
 
 def get_response(question):
     api_key = "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"
-    endpoint = "https://azeu-api-beta.onrender.com/GlobalGPT"
+    endpoint = "https://openai-rest-api.vercel.app/hercai?ask="
     params = {"question": question, "apiKey": api_key}
 
     response = requests.get(endpoint, params=params)
